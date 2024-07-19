@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Sekolah</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-top: 20px;
+      color: #2c3e50;
+    }
+
+    nav {
+      margin: 20px 0;
+    }
+
+    nav button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    nav button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Form Styles */
+    form {
+      background-color: #ffffff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    form h2 {
+      margin-top: 0;
+      color: #34495e;
+    }
+
+    form label {
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    form button[type="submit"] {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button[type="submit"]:hover {
+      background-color: #27ae60;
+    }
+
+    /* Spinner Styles */
+    .spinner {
+      border: 6px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 6px solid #3498db;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      display: none;
+      margin-top: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Utility Classes */
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Data Sekolah</h1>
+  
+  <nav>
+    <button onclick="showForm('formKelas')">Data Kelas</button>
+    <button onclick="showForm('formMutasiMasuk')">Data Mutasi Masuk</button>
+    <button onclick="showForm('formMutasiKeluar')">Data Mutasi Keluar</button>
+    <button onclick="showForm('formKasus')">Data Penanganan Kasus</button>
+  </nav>
+  
+  <form id="formKelas" data-sheet="DataKelas" style="display:none;">
+    <h2>Data Seluruh Kelas</h2>
+    <label for="kelas">Kelas:</label>
+    <select id="kelas" name="kelas" required>
+      <option value="I">I</option>
+      <option value="II">II</option>
+      <option value="III">III</option>
+      <option value="IV">IV</option>
+      <option value="V">V</option>
+      <option value="VI">VI</option>
+    </select>
+    <label for="perempuan">Perempuan:</label>
+    <input type="number" id="perempuan" name="perempuan" min="0" required>
+    <label for="laki_laki">Laki-laki:</label>
+    <input type="number" id="laki_laki" name="laki_laki" min="0" required>
+    <button type="submit">Submit</button>
+  </form>
+  
+  <form id="formMutasiMasuk" data-sheet="DataMutasiMasuk" style="display:none;">
+    <h2>Data Mutasi Masuk</h2>
+    <label for="nama_mutasi_masuk">Nama:</label>
+    <input type="text" id="nama_mutasi_masuk" name="nama_mutasi_masuk" required>
+    <label for="asal_sekolah_mutasi_masuk">Asal Sekolah:</label>
+    <input type="text" id="asal_sekolah_mutasi_masuk" name="asal_sekolah_mutasi_masuk" required>
+    <label for="kelas_mutasi_masuk">Diterima di Kelas:</label>
+    <select id="kelas_mutasi_masuk" name="kelas_mutasi_masuk" required>
+      <option value="I">I</option>
+      <option value="II">II</option>
+      <option value="III">III</option>
+      <option value="IV">IV</option>
+      <option value="V">V</option>
+      <option value="VI">VI</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>
+  
+  <form id="formMutasiKeluar" data-sheet="DataMutasiKeluar" style="display:none;">
+    <h2>Data Mutasi Keluar</h2>
+    <label for="nama_mutasi_keluar">Nama:</label>
+    <input type="text" id="nama_mutasi_keluar" name="nama_mutasi_keluar" required>
+    <label for="kelas_mutasi_keluar">Kelas:</label>
+    <select id="kelas_mutasi_keluar" name="kelas_mutasi_keluar" required>
+      <option value="I">I</option>
+      <option value="II">II</option>
+      <option value="III">III</option>
+      <option value="IV">IV</option>
+      <option value="V">V</option>
+      <option value="VI">VI</option>
+    </select>
+    <label for="alamat_sekolah_tujuan_mutasi_keluar">Alamat Sekolah Tujuan:</label>
+    <input type="text" id="alamat_sekolah_tujuan_mutasi_keluar" name="alamat_sekolah_tujuan_mutasi_keluar" required>
+    <button type="submit">Submit</button>
+  </form>
+  
+  <form id="formKasus" data-sheet="DataKasus" style="display:none;">
+    <h2>Data Penanganan Kasus</h2>
+    <label for="no_kasus">No:</label>
+    <input type="number" id="no_kasus" name="no_kasus" min="1" required>
+    <label for="kelas_kasus">Kelas:</label>
+    <select id="kelas_kasus" name="kelas_kasus" required>
+      <option value="I">I</option>
+      <option value="II">II</option>
+      <option value="III">III</option>
+      <option value="IV">IV</option>
+      <option value="V">V</option>
+      <option value="VI">VI</option>
+    </select>
+    <label for="nama_kasus">Nama:</label>
+    <input type="text" id="nama_kasus" name="nama_kasus" required>
+    <label for="nis_nisn_kasus">NIS/NISN:</label>
+    <input type="text" id="nis_nisn_kasus" name="nis_nisn_kasus" required>
+    <label for="kasus">Kasus:</label>
+    <textarea id="kasus" name="kasus" rows="4" required></textarea>
+    <label for="penanganan_kasus">Penanganan:</label>
+    <textarea id="penanganan_kasus" name="penanganan_kasus" rows="4" required></textarea>
+    <button type="submit">Submit</button>
+  </form>
+  
+  <div id="loadingSpinner" class="spinner"></div>
+  
+  <script>
+    function showForm(formId) {
+      document.querySelectorAll('form').forEach(form => {
+        form.style.display = form.id === formId ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>
